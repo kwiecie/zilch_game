@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Zilch!</title>
+{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <h1>Zilch!</h1>
+        <button><a href="{{ url_for('solo') }}">Nowa gra solo</a></button>
+        <button><a href="{{ url_for('new') }}">Nowa gra (2 graczy)</a></button>
+    </div>
+
+{% endblock %}

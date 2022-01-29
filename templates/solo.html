@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Gra solo | Zilch!</title>
+{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <h1>Zilch!</h1>
+        <h2>Podaj imiona graczy:</h2>
+        <form action="{{ url_for('solo_start') }}" method="post">
+            <div id="p1">Gracz 1: <input name="player1" value="Podaj imię"></div>
+            <div id="p2">Gracz 2: <input name="player2" value="Podaj imię"></div>
+            <input type="submit" value="Rozpocznij grę">
+        </form>
+    </div>
+{% endblock %}

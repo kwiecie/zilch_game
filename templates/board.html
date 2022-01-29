@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Rozgrywka | Zilch!</title>
+{% endblock %}
+
+{% block body %}
+    <div class="score">
+        <div class="score_table1">
+            <h3>Gracz 1: {{ game.players[0].name }}</h3>
+            <p>{{ game.players[0].round_scores }}</p>
+            <h3>Wynik: {{ game.players[0].score }}</h3>
+        </div>
+        <div class="score_table2">
+            <h3>Gracz 2: {{ game.players[1].name }}</h3>
+            <p>{{ game.players[1].round_scores }}</p>
+            <h3>Wynik: {{ game.players[1].score }}</h3>
+        </div>
+    </div>
+        <div class="header">
+            <h2>Tura gracza: {{ game.players[game.current_player].name }}</h2>
+        </div>
+        <div class="board">
+            <div class="dices">
+                <div class="one_dice">{{ game.dices[0] }}</div>
+                <div class="one_dice">{{ game.dices[1] }}</div>
+                <div class="one_dice">{{ game.dices[2] }}</div>
+                <div class="one_dice">{{ game.dices[3] }}</div>
+                <div class="one_dice">{{ game.dices[4] }}</div>
+                <div class="one_dice">{{ game.dices[5] }}</div>
+
+                <!--<img src="{{ url_for('static', filename='img/1.png') }}">
+                <img src="{{ url_for('static', filename='img/2.png') }}">
+                <img src="{{ url_for('static', filename='img/3.png') }}">
+                <img src="{{ url_for('static', filename='img/4.png') }}">
+                <img src="{{ url_for('static', filename='img/5.png') }}">
+                <img src="{{ url_for('static', filename='img/6.png') }}">-->
+
+                <form action="{{ url_for('roll') }}" method="post">
+                    <label for="d1">1</label>
+                    <input id="d1" name="d1" type="checkbox">
+                    <label for="d2">2</label>
+                    <input id="d2" name="d2" type="checkbox">
+                    <label for="d3">3</label>
+                    <input id="d3" name="d3" type="checkbox">
+                    <label for="d4">4</label>
+                    <input id="d4" name="d4" type="checkbox">
+                    <label for="d5">5</label>
+                    <input id="d5" name="d5" type="checkbox">
+                    <label for="d6">6</label>
+                    <input id="d6" name="d6" type="checkbox">
+                    <button type="submit" id="re_roll">Przerzuć</button>
+                </form>
+            </div>
+            <div class="moves">
+                <button>2 x 200 pkt</button>
+                <button>Bank</button>
+                <!--<button id="dice" type="submit"><a href="{{ url_for('roll') }}">Rzut</a></button>-->
+            </div>
+
+        </div>
+
+{% endblock %}

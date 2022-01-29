@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+  }
+
+body {
+    background-color: lightgray;
+}
+
+.score {
+    float: left;
+    display: inline;
+    width: 25%;
+    height: 100vh;
+  }
+
+.header {
+    border: dotted 2px;
+    width: 65%;
+    display: inline-block;
+    padding: 5px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.board {
+    width: 65%;
+    display: inline-block;
+}
+
+.score_table1 {
+    border: dotted 2px;
+    display: block;
+    width: 90%;
+    margin: 10px;
+    padding: 5px;
+    min-height: 45vh;
+}
+
+.score_table2 {
+    border: dotted 2px;
+    display: block;
+    width: 90%;
+    margin: 10px;
+    padding: 5px;
+    min-height: 45vh;
+}
+
+.moves {
+    display: block;
+    float: right;
+    width: 155px;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+    #margin: auto;
+    display: block;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    border-bottom: dotted 1px;
+    margin: 5px 10px 0 10px;
+}
+
+button {
+    display: block;
+    background-color: lightgray;
+    border: solid 1px maroon;
+    color: maroon;
+    padding: 15px 32px;
+    margin: 5px;
+    margin-left: 0;
+    font-size: 16px;
+    width: 145px;
+    height: 50px;
+}
+
+button:hover {
+    background-color: maroon;
+    color: lightgray;
+    animation-delay: 2s;
+}
+
+.dice {
+    width: 70%;
+    margin: 50px;
+    display: block;
+}
+
+.one_dice {
+    border: solid 1px;
+    width: 75px;
+    height: 75px;
+    display: inline-block;
+    margin: 10px;
+    vertical-align: baseline;
+}
+
+.moves {
+    width: 15%;
+    display: block;
+}
+.dice img {
+    width: 100px;
+}
+
+.content {
+    margin: auto;
+    margin-top: 100px;
+    border: #9C1A1C dotted 2px;
+    width: 40%;
+}
+
+input {
+    border: #9C1A1C solid 1px;
+    background-color: lightgray;
+}
