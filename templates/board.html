@@ -7,12 +7,12 @@
 {% block body %}
     <div class="score">
         <div class="score_table1">
-            <h3>Gracz 1: {{ game.players[0].name }}</h3>
+            <h3>{{ game.players[0].name }}</h3>
             <p>{{ game.players[0].round_scores }}</p>
             <h3>Wynik: {{ game.players[0].score }}</h3>
         </div>
         <div class="score_table2">
-            <h3>Gracz 2: {{ game.players[1].name }}</h3>
+            <h3>{{ game.players[1].name }}</h3>
             <p>{{ game.players[1].round_scores }}</p>
             <h3>Wynik: {{ game.players[1].score }}</h3>
         </div>
@@ -22,19 +22,113 @@
         </div>
         <div class="board">
             <div class="dices">
+                <!--{% for dice in game.dices %}
+                    {% if game.dices[dice] == 1 %}
+                        <img src="{{ url_for('static', filename='img/1.png') }}">
+                    {% elif game.dices[dice] == 2 %}
+                        <img src="{{ url_for('static', filename='img/2.png') }}">
+                    {% elif game.dices[dice] == 3 %}
+                        <img src="{{ url_for('static', filename='img/3.png') }}">
+                    {% elif game.dices[dice] == 4 %}
+                        <img src="{{ url_for('static', filename='img/4.png') }}">
+                    {% elif game.dices[dice] == 5 %}
+                        <img src="{{ url_for('static', filename='img/5.png') }}">
+                    {% elif game.dices[dice] == 6  %}
+                        <img src="{{ url_for('static', filename='img/6.png') }}">
+                    {% endif %}
+                {% endfor %}-->
+
+                {% if game.dices[0] == 1 %}
+                     <img src="{{ url_for('static', filename='img/1.png') }}">
+                {% elif game.dices[0] == 2 %}
+                    <img src="{{ url_for('static', filename='img/2.png') }}">
+                {% elif game.dices[0] == 3 %}
+                    <img src="{{ url_for('static', filename='img/3.png') }}">
+                {% elif game.dices[0] == 4 %}
+                    <img src="{{ url_for('static', filename='img/4.png') }}">
+                {% elif game.dices[0] == 5 %}
+                    <img src="{{ url_for('static', filename='img/5.png') }}">
+                {% elif game.dices[0] == 6  %}
+                    <img src="{{ url_for('static', filename='img/6.png') }}">
+                {% endif %}
+
+                {% if game.dices[1] == 1 %}
+                     <img src="{{ url_for('static', filename='img/1.png') }}">
+                {% elif game.dices[1] == 2 %}
+                    <img src="{{ url_for('static', filename='img/2.png') }}">
+                {% elif game.dices[1] == 3 %}
+                    <img src="{{ url_for('static', filename='img/3.png') }}">
+                {% elif game.dices[1] == 4 %}
+                    <img src="{{ url_for('static', filename='img/4.png') }}">
+                {% elif game.dices[1] == 5 %}
+                    <img src="{{ url_for('static', filename='img/5.png') }}">
+                {% elif game.dices[1] == 6  %}
+                    <img src="{{ url_for('static', filename='img/6.png') }}">
+                {% endif %}
+
+                {% if game.dices[2] == 1 %}
+                     <img src="{{ url_for('static', filename='img/1.png') }}">
+                {% elif game.dices[2] == 2 %}
+                    <img src="{{ url_for('static', filename='img/2.png') }}">
+                {% elif game.dices[2] == 3 %}
+                    <img src="{{ url_for('static', filename='img/3.png') }}">
+                {% elif game.dices[2] == 4 %}
+                    <img src="{{ url_for('static', filename='img/4.png') }}">
+                {% elif game.dices[2] == 5 %}
+                    <img src="{{ url_for('static', filename='img/5.png') }}">
+                {% elif game.dices[2] == 6  %}
+                    <img src="{{ url_for('static', filename='img/6.png') }}">
+                {% endif %}
+
+                {% if game.dices[3] == 1 %}
+                     <img src="{{ url_for('static', filename='img/1.png') }}">
+                {% elif game.dices[3] == 2 %}
+                    <img src="{{ url_for('static', filename='img/2.png') }}">
+                {% elif game.dices[3] == 3 %}
+                    <img src="{{ url_for('static', filename='img/3.png') }}">
+                {% elif game.dices[3] == 4 %}
+                    <img src="{{ url_for('static', filename='img/4.png') }}">
+                {% elif game.dices[3] == 5 %}
+                    <img src="{{ url_for('static', filename='img/5.png') }}">
+                {% elif game.dices[3] == 6  %}
+                    <img src="{{ url_for('static', filename='img/6.png') }}">
+                {% endif %}
+
+                {% if game.dices[4] == 1 %}
+                     <img src="{{ url_for('static', filename='img/1.png') }}">
+                {% elif game.dices[4] == 2 %}
+                    <img src="{{ url_for('static', filename='img/2.png') }}">
+                {% elif game.dices[4] == 3 %}
+                    <img src="{{ url_for('static', filename='img/3.png') }}">
+                {% elif game.dices[4] == 4 %}
+                    <img src="{{ url_for('static', filename='img/4.png') }}">
+                {% elif game.dices[4] == 5 %}
+                    <img src="{{ url_for('static', filename='img/5.png') }}">
+                {% elif game.dices[4] == 6  %}
+                    <img src="{{ url_for('static', filename='img/6.png') }}">
+                {% endif %}
+
+                {% if game.dices[5] == 1 %}
+                     <img src="{{ url_for('static', filename='img/1.png') }}">
+                {% elif game.dices[5] == 2 %}
+                    <img src="{{ url_for('static', filename='img/2.png') }}">
+                {% elif game.dices[5] == 3 %}
+                    <img src="{{ url_for('static', filename='img/3.png') }}">
+                {% elif game.dices[5] == 4 %}
+                    <img src="{{ url_for('static', filename='img/4.png') }}">
+                {% elif game.dices[5] == 5 %}
+                    <img src="{{ url_for('static', filename='img/5.png') }}">
+                {% elif game.dices[5] == 6  %}
+                    <img src="{{ url_for('static', filename='img/6.png') }}">
+                {% endif %}
+                <br>
                 <div class="one_dice">{{ game.dices[0] }}</div>
                 <div class="one_dice">{{ game.dices[1] }}</div>
                 <div class="one_dice">{{ game.dices[2] }}</div>
                 <div class="one_dice">{{ game.dices[3] }}</div>
                 <div class="one_dice">{{ game.dices[4] }}</div>
                 <div class="one_dice">{{ game.dices[5] }}</div>
-
-                <!--<img src="{{ url_for('static', filename='img/1.png') }}">
-                <img src="{{ url_for('static', filename='img/2.png') }}">
-                <img src="{{ url_for('static', filename='img/3.png') }}">
-                <img src="{{ url_for('static', filename='img/4.png') }}">
-                <img src="{{ url_for('static', filename='img/5.png') }}">
-                <img src="{{ url_for('static', filename='img/6.png') }}">-->
+                <br>
 
                 <form action="{{ url_for('roll') }}" method="post">
                     <label for="d1">1</label>
@@ -53,8 +147,9 @@
                 </form>
             </div>
             <div class="moves">
+                <button><a href="{{ url_for('save_dices') }}">{{ game.check_score() }}</a></button>
                 <button>2 x 200 pkt</button>
-                <button>Bank</button>
+                <button type="submit" id="bank"><a href="{{ url_for('bank') }}">Bank</a></button>
                 <!--<button id="dice" type="submit"><a href="{{ url_for('roll') }}">Rzut</a></button>-->
             </div>
 

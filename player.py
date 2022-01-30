@@ -7,11 +7,14 @@ class Player:
         self.round_scores = []
         self.dices_saved = []
         self.dices_to_reroll = []
+        self.current_round_score = 0
+        self.round_counter = 0
 
     def __repr__(self):
         return f'''
         Imię: {self.name}
         Wynik: {self.score}
+        Runda: {self.round_counter}
         '''
 
     def get_name(self):
@@ -59,7 +62,12 @@ class Player:
         self.dices_to_reroll = dice_list
         self.dices_saved = new_dices_saved
 
+    def sum_the_score(self):
+        for element in self.round_scores:
+            self.score += self.round_scores[element]
+        return self.score
+
     def add_to_bank(self):
         #zakończ turę
-        return self.score + self.round_score
-
+        #return self.score + self.round_scores[self.round_counter]
+        pass

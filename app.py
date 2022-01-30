@@ -119,7 +119,7 @@ def roll():
     #game.players[game.current_player].handle_reroll_by_array_index(to_reroll)
     game.re_roll(to_reroll)
     print(game.dices)
-    print(game.check_score())
+    #print(game.check_score())
 
 
     #if game.check_if_finished():
@@ -127,10 +127,24 @@ def roll():
 
     return redirect('/board')
 
-@app.route('/bank')
-def add_to_bank():
-    pass
+@app.route('/save_dices')
+def save_dices():
+    #game.players[game.current_player].current_round_score = 0
+    score = game.check_score()
+    game.players[game.current_player].round_scores.append(score)
 
+    return redirect('/board')
+
+@app.route('/bank', methods=['POST', 'GET'])
+def bank():
+    #game.players[game.current_player].round_scores += game.players[game.current_player].current_round_score
+    print(game.players[game.current_player])
+    game.players[game.current_player].round_counter += 1
+    game.players[game.current_player].add_to_bank()
+    game.next_player()
+    game.reset_dices()
+    game.set_dices()
+    return redirect('/board')
 
 @app.route('/win')
 def win():
