@@ -53,6 +53,8 @@ body {
 
 h1 {
     font-family: 'Playfair Display', serif;
+    font-weight: 200;
+    color: #9C1A1C;
     font-size: 50px;
     #margin: auto;
     display: block;
@@ -60,6 +62,8 @@ h1 {
 
 h2 {
     font-family: 'Playfair Display', serif;
+    font-weight: 200;
+    color: #9C1A1C;
     font-size: 32px;
 }
 

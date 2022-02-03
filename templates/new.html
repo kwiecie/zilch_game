@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>Nowa gra | Zilch!</title>
+    <title>Gra dla dwóch osób | Zilch!</title>
 {% endblock %}
 
 {% block body %}
     <div class="content">
         <h1>Zilch!</h1>
         <h2>Podaj imiona graczy:</h2>
-        <form action="{{ url_for('reset') }}" method="post">
-            <label for="player1"></label>
-            <input type="text" id="player1" name="player1"><br>
-            <label for="player2"></label>
-            <input type="text" id="player2" name="player2"><br>
-            <input type="submit" value="Start"><br>
+        <form action="{{ url_for('new_start') }}" method="post">
+            <div id="p1">Gracz 1: <input name="player1" value="Podaj imię"></input>
+            <div id="p2">Gracz 2: <input name="player2" value="Podaj imię"></div>
+            <button type="submit" value="Rozpocznij grę">Rozpocznij grę</button>
         </form>
     </div>
 {% endblock %}

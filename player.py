@@ -9,6 +9,7 @@ class Player:
         self.dices_to_reroll = []
         self.current_round_score = 0
         self.round_counter = 0
+        self.winner = False
 
     def __repr__(self):
         return f'''
@@ -63,9 +64,14 @@ class Player:
         self.dices_saved = new_dices_saved
 
     def sum_the_score(self):
-        for element in self.round_scores:
-            self.score += self.round_scores[element]
+        '''Sums the score of player'''
+        self.score = sum(self.round_scores)
         return self.score
+
+    def check_if_wins(self):
+        if self.score >= 1000:
+            self.winner = True
+        return self.winner
 
     def add_to_bank(self):
         #zakończ turę

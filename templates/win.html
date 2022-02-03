@@ -6,7 +6,7 @@
 
 {% block body %}
     <h2>Wygrana!</h2>
-    <h3>Zwyciężył gracz: {{ winner }}</h3>
+    <h3>Zwyciężył gracz: {{ game.winner }}</h3>
     <button><a href="{{ url_for('new') }}">Graj ponownie</a></button>
 
 {% endblock %}

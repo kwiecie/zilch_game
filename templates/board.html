@@ -147,8 +147,38 @@
                 </form>
             </div>
             <div class="moves">
-                <button><a href="{{ url_for('save_dices') }}">{{ game.check_score() }}</a></button>
-                <button>2 x 200 pkt</button>
+                <!--{% for x in range(6) %}
+                    {% if x in game.current_roll_score %}
+                        <a href="{{ url_for('save_dices') }}"><button>{{ game.current_roll_score[x] }}</button></a>
+                    {% endif %}
+                {% endfor %}
+                {% if game.current_roll_score != 0 %}
+                    <a href="{{ url_for('save_dices') }}"><button>{{ game.current_roll_score[1] }}</button></a>
+                    <a href="{{ url_for('save_dices') }}"><button>{{ game.current_roll_score[2] }}</button></a>
+                    <a href="{{ url_for('save_dices') }}"><button>{{ game.current_roll_score[3] }}</button></a>
+                    <a href="{{ url_for('save_dices') }}"><button>{{ game.current_roll_score[4] }}</button></a>
+                    <a href="{{ url_for('save_dices') }}"><button>{{ game.current_roll_score[5] }}</button></a>
+                    <a href="{{ url_for('save_dices') }}"><button>{{ game.current_roll_score[6] }}</button></a>
+                {% endif %}-->
+                <!--<a href="{{ url_for('save_dices') }}"><button>{{ game.check_score() }}</button></a>-->
+                <form action="{{ url_for('save_dices') }}" method="post">
+                    <label for="d1">Punkty za 1: {{ game.current_roll_score[1] }}</label>
+                    <input id="d1" name="d1" type="checkbox">
+                    <label for="d2">Punkty za 2: {{ game.current_roll_score[2] }}</label>
+                    <input id="d2" name="d2" type="checkbox">
+                    <label for="d3">Punkty za 3: {{ game.current_roll_score[3] }}</label>
+                    <input id="d3" name="d3" type="checkbox">
+                    <label for="d4">Punkty za 4: {{ game.current_roll_score[4] }}</label>
+                    <input id="d4" name="d4" type="checkbox">
+                    <label for="d5">Punkty za 5: {{ game.current_roll_score[5] }}</label>
+                    <input id="d5" name="d5" type="checkbox">
+                    <label for="d6">Punkty za 6: {{ game.current_roll_score[6] }}</label>
+                    <input id="d6" name="d6" type="checkbox">
+                    <label for="d6">Punkty za strit: {{ game.current_roll_score['strit'] }}</label>
+                    <input id="d_strit" name="d_strit" type="checkbox">
+                    <button type="submit" id="save_dices">Zapisz punkty</button>
+                </form>
+
                 <button type="submit" id="bank"><a href="{{ url_for('bank') }}">Bank</a></button>
                 <!--<button id="dice" type="submit"><a href="{{ url_for('roll') }}">Rzut</a></button>-->
             </div>

@@ -7,12 +7,12 @@ class Game:
     def __init__(self):
         self.players = []
         self.current_player = 0
-        #.current_round_score = 0
+        self.current_roll_score = {}
         self.dices = []
         self.dices_to_reroll = []
         self.current_round = False
         self.last_round = False
-        self.winner = -1
+        self.winner = None
 
     def add_player(self, name):
         self.players.append(Player(name))
@@ -57,17 +57,20 @@ class Game:
 
     def check_score(self):
         '''Dodać wszystkie możliwośći punktacji'''
+        self.current_roll_score = {}
         one_score = 0
         two_score = 0
         three_score = 0
         four_score = 0
         five_score = 0
         six_score = 0
+        strit_score = 0
 
         self.players[self.current_player].current_round_score = 0
         #dices_counter = sorted(Counter(self.dices))
         def count_one_kind(lst, kind):
             return self.dices.count(kind)
+
 
         one = count_one_kind(self.dices, 1)
         if one == 6:
@@ -84,6 +87,8 @@ class Game:
             one_score = 100
         else:
             one_score = 0
+        if one_score != 0:
+            self.current_roll_score[1] = one_score
 
         five = count_one_kind(self.dices, 5)
         if five == 6:
@@ -100,6 +105,8 @@ class Game:
             five_score = 50
         else:
             five_score = 0
+        if five_score != 0:
+            self.current_roll_score[5] = five_score
 
         #wynik za dwójki
         two = count_one_kind(self.dices, 2)
@@ -113,6 +120,8 @@ class Game:
             two_score = 200
         else:
             two_score = 0
+        if two_score != 0:
+            self.current_roll_score[2] = two_score
 
         # wynik za trójki
         three = count_one_kind(self.dices, 3)
@@ -126,6 +135,8 @@ class Game:
             three_score = 300
         else:
             three_score = 0
+        if three_score != 0:
+            self.current_roll_score[3] = three_score
 
         # wynik za czwórki
         four = count_one_kind(self.dices, 4)
@@ -139,6 +150,8 @@ class Game:
             four_score = 400
         else:
             four_score = 0
+        if four_score != 0:
+            self.current_roll_score[4] = four_score
 
         # wynik za szóstki
         six = count_one_kind(self.dices, 6)
@@ -152,6 +165,14 @@ class Game:
             six_score = 600
         else:
             six_score = 0
+        if six_score != 0:
+            self.current_roll_score[6] = six_score
+
+        #wynik za strita
+        if one == 1 and two == 1 and three == 1 and four == 1 and five ==1 and six == 1:
+            strit_score = 1500
+        if strit_score != 0:
+            self.current_roll_score['strit'] = strit_score
 
         print('ile jedynek: %s, wynik za rzut: %s' % (one, one_score))
         print('ile dwójek: %s, wynik za rzut: %s' % (two, two_score))
@@ -159,8 +180,8 @@ class Game:
         print('ile czwórek: %s, wynik za rzut: %s' % (four, four_score))
         print('ile piątek: %s, wynik za rzut: %s' % (five, five_score))
         print('ile szóstek: %s, wynik za rzut: %s' % (six, six_score))
-        #print('counter: ')
-        #print(dices_counter)
+        print('wynik za strit: %s' % strit_score)
+        print(self.current_roll_score)
 
         '''for dice in dices_counter:
             if dices_counter[1] == 6:
@@ -200,11 +221,25 @@ class Game:
     def remove_from_dices(self):
         pass
 
+    def winner(self):
+        if self.players[self.current_player].score >= 1000:
+             self.winner == self.players[self.current_player]
+        return self.winner
 
     def check_if_last_round(self):
-        if self.last_round == 1:
-            return self.winner
+        if self.players[self.current_player].winner == True:
+            self.players[self.last_round] = True
+        return self.last_round
 
+    '''def check_if_winner(self):
+        if self.players[self.current_player] == self.winner:'''
+
+
+
+    def check_winner(self):
+        if self.players[self.current_player].winner == True:
+            self.winner = self.players[self.current_player].winner
+            return self.winner
 
     def __repr__(self):
         return  f'''
