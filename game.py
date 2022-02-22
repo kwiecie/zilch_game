@@ -40,20 +40,23 @@ class Game:
 
     def roll(self, dice_list):
         for i in range(len(dice_list)):
-            random_dice = random.randint(1, 6)
-            print(random_dice)
+            #random_dice = random.randint(1, 6)
+            self.dices[i] = random.randint(1,6)
+            #print(random_dice)
             #self.players[self.current_player].dices_saved.append(random_dice)
+        return self.dices
 
-    def re_roll(self, dices_to_reroll):
-        '''Funkcja przerzucająca wybrane kości'''
+
+    '''def re_roll(self, dices_to_reroll):
+        #Funkcja przerzucająca wybrane kości
         for dice in self.dices:
             if dice in dices_to_reroll:
-                self.dices[dice] = random.randint(1,6)
+                self.dices[dice] = random.randint(1,6)'''
 
         #for dice in dices_to_reroll:
         #    self.dices.append(random.randint(1,6))
             #rerolled_dice = random.randint(1, 6)
-        return self.dices
+        #return self.dices
 
     def check_score(self):
         '''Dodać wszystkie możliwośći punktacji'''
@@ -181,42 +184,27 @@ class Game:
         print('ile piątek: %s, wynik za rzut: %s' % (five, five_score))
         print('ile szóstek: %s, wynik za rzut: %s' % (six, six_score))
         print('wynik za strit: %s' % strit_score)
-        print(self.current_roll_score)
+        if self.current_roll_score:
+            print(self.current_roll_score)
+            #return self.current_roll_score
+        else:
+            print('Zilch!')
+            #self.current_roll_score = 0
+            #return self.current_roll_score
 
-        '''for dice in dices_counter:
-            if dices_counter[1] == 6:
-                score = 8000
-            elif dices_counter[1] == 5:
-                score = 4000
-            elif dices_counter[1] == 4:
-                score = 2000
-            elif dices_counter[1] == 3:
-                score = 1000
-            elif dices_counter[1] == 2:
-                score = 200
-            elif dices_counter[1] == 1:
-                score = 100
-            else:
-                score = 0'''
-        #if 1 in self.dices:
-        #    score = 100
-        #elif 5 in self.dices:
-        #    score = 50
-        #else:
-        #    score = 0
-        #    print('Zilch!')
-        #elif Counter(self.dices)
 
         #def add_to_round_score(self):
         #    game.players[game.current_player].sum_the_score()
-        if one_score == five_score == 0:
+        '''if one_score == five_score == 0:
             score = 0
         elif one_score >= five_score:
             score = one_score
         else:
-            score = five_score
+            score = five_score'''
 
-        return score
+        #return score
+
+        return self.current_roll_score
 
     def remove_from_dices(self):
         pass
@@ -230,10 +218,6 @@ class Game:
         if self.players[self.current_player].winner == True:
             self.players[self.last_round] = True
         return self.last_round
-
-    '''def check_if_winner(self):
-        if self.players[self.current_player] == self.winner:'''
-
 
 
     def check_winner(self):

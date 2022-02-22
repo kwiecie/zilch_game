@@ -3,6 +3,7 @@ from flask import render_template
 from flask import redirect
 from flask import request
 from flask import url_for
+#from socketio import SocketIO
 
 from random import randint
 
@@ -11,6 +12,8 @@ from game import Game
 from scorer import Score
 
 app = Flask(__name__)
+#app.config['SECRET_KEY'] = 'very_secret'
+#socketio = SocketIO(app)
 
 game = Game()
 
@@ -65,52 +68,6 @@ def new_start():
     else:
         return redirect('/board')
 
-'''
-@app.route('/roll', methods=['POST'])
-def roll():
-    global game
-    if game.num_of_players() == 0:
-        return redirect('/solo')
-    print(game.players)
-    #print(game.players[0].dices_saved)
-    print(game.current_player)
-    to_reroll = []
-
-    if 'd1' in request.form:
-        to_reroll.append(0)
-    if 'd2' in request.form:
-        to_reroll.append(1)
-    if 'd3' in request.form:
-        to_reroll.append(2)
-    if 'd4' in request.form:
-        to_reroll.append(3)
-    if 'd5' in request.form:
-        to_reroll.append(4)
-    if 'd6' in request.form:
-        to_reroll.append(5)
-    print(to_reroll)
-    #if 'd1' in request.form:
-    #    player.dices_saved.append(0)
-    #if 'd2' in request.form:
-    #    player.dices_saved.append(1)
-    #if 'd3' in request.form:
-    #    player.dices_saved.append(2)
-    #if 'd4' in request.form:
-    #    player.dices_saved.append(3)
-    #if 'd5' in request.form:
-    #    player.dices_saved.append(4)
-    #if 'd6' in request.form:
-    #    player.dices_saved.append(5)
-
-    #game.players[game.current_player].handle_reroll_by_array_index(to_reroll)
-    game.roll(to_reroll)
-
-    if game.check_if_last_round():
-        return redirect('/win')
-
-    return redirect('/board')
-'''
-
 @app.route('/roll', methods=['POST', 'GET'])
 def roll():
     global game
@@ -151,27 +108,51 @@ def roll():
 def save_dices():
     #game.players[game.current_player].current_round_score = 0
     score = game.check_score()
-    game.players[game.current_player].round_scores.append(score)
-    game.reset_dices()
+
+    #game.players[game.current_player].round_scores.append(score)
+    #game.reset_dices()
 
     def remove_value_from_list(the_list, val):
         return [value for value in the_list if value != val]
-
     if 'd1' in request.form:
-        remove_value_from_list(game.dices.pop, 1)
+        game.players[game.current_player].round_scores.append(game.current_roll_score[1])
+        game.dices = remove_value_from_list(game.dices, 1)
     if 'd2' in request.form:
-        remove_value_from_list(game.dices.pop, 2)
+        game.players[game.current_player].round_scores.append(game.current_roll_score[2])
+        game.dices = remove_value_from_list(game.dices, 2)
     if 'd3' in request.form:
-        remove_value_from_list(game.dices.pop, 3)
+        game.players[game.current_player].round_scores.append(game.current_roll_score[3])
+        game.dices = remove_value_from_list(game.dices, 3)
     if 'd4' in request.form:
-        remove_value_from_list(game.dices.pop, 4)
+        game.players[game.current_player].round_scores.append(game.current_roll_score[4])
+        game.dices = remove_value_from_list(game.dices, 4)
     if 'd5' in request.form:
-        remove_value_from_list(game.dices.pop, 5)
+        game.players[game.current_player].round_scores.append(game.current_roll_score[5])
+        game.dices = remove_value_from_list(game.dices, 5)
     if 'd6' in request.form:
-        remove_value_from_list(game.dices.pop, 6)
-    #game.reset_dices()
-    game.check_score()
+        game.players[game.current_player].round_scores.append(game.current_roll_score[6])
+        game.dices = remove_value_from_list(game.dices, 6)
+    if 'strit' in request.form:
+        game.players[game.current_player].round_scores.append(game.current_roll_score['strit'])
+        for i in game.dices:
+            game.dices = remove_value_from_list(game.dices, i)
+            i += 1
 
+    #game.reset_dices()
+    print(game.dices)
+    game.check_score()
+    '''if 'Zilch' in score:
+        #print('Zilch!')
+        game.next_player()
+        game.reset_dices()
+        game.set_dices()'''
+    #game.roll(game.dices)
+
+    return redirect('/board')
+
+@app.route('/reroll')
+def reroll():
+    game.roll(game.dices)
     return redirect('/board')
 
 @app.route('/bank', methods=['POST', 'GET'])
@@ -187,21 +168,10 @@ def bank():
     game.set_dices()
     return redirect('/board')
 
-'''@app.route('/win')
-def win():
-    global game
-    if game.check_if_last_round():
-        game.check_winner()
-        return render_template('win.html', game = game, winner = game.winner)
-    return redirect('/')'''
-
 @app.route('/win')
 def win():
     global game
     return render_template('win.html', game = game, winner = game.winner)
 
-def check():
-    return False
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port="5111", debug=True)

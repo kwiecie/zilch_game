@@ -9,8 +9,8 @@
         <h1>Zilch!</h1>
         <h2>Podaj imiona graczy:</h2>
         <form action="{{ url_for('new_start') }}" method="post">
-            <div id="p1">Gracz 1: <input name="player1" value="Podaj imię"></input>
-            <div id="p2">Gracz 2: <input name="player2" value="Podaj imię"></div>
+            <label for="p1">Gracz 1: </label><input name="player1" value="Podaj imię"></input>
+            <label for="p2">Gracz 2: </label><input name="player2" value="Podaj imię"></label>
             <button type="submit" value="Rozpocznij grę">Rozpocznij grę</button>
         </form>
     </div>

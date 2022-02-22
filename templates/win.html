@@ -5,8 +5,9 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Wygrana!</h2>
-    <h3>Zwyciężył gracz: {{ game.winner }}</h3>
-    <button><a href="{{ url_for('new') }}">Graj ponownie</a></button>
-
+    <div class="content">
+        <h2>Wygrana!</h2>
+        <p>Zwyciężył gracz: {{ game.winner }}</p>
+        <a href="{{ url_for('new') }}"><button>Graj ponownie</button></a>
+    </div>
 {% endblock %}

@@ -23,7 +23,7 @@ body {
 }
 
 .board {
-    width: 65%;
+    width: 62%;
     display: inline-block;
 }
 
@@ -56,6 +56,7 @@ h1 {
     font-weight: 200;
     color: #9C1A1C;
     font-size: 50px;
+    text-align: center;
     #margin: auto;
     display: block;
 }
@@ -63,13 +64,13 @@ h1 {
 h2 {
     font-family: 'Playfair Display', serif;
     font-weight: 200;
+    text-align: center;
     color: #9C1A1C;
     font-size: 32px;
 }
 
 p {
     font-family: 'Poppins', sans-serif;
-    border-bottom: dotted 1px;
     margin: 5px 10px 0 10px;
 }
 a {
@@ -88,7 +89,8 @@ button {
     color: maroon;
     padding: 15px 32px;
     margin: auto;
-    font-size: 16px;
+    margin-top: 15px;
+    font-size: 12px;
     width: 145px;
     height: 50px;
 }
@@ -97,6 +99,12 @@ button:hover {
     background-color: maroon;
     color: lightgray;
     animation-delay: 2s;
+}
+
+label {
+    font-family: 'Poppins', sans-serif;
+    color: #9C1A1C;
+    font-size: 14px;
 }
 a button:hover {
     color: #86989B;
@@ -136,4 +144,52 @@ a button:hover {
 input {
     border: #9C1A1C solid 1px;
     background-color: lightgray;
+}
+
+.rules {
+    border: #9C1A1C dotted 2px;
+    display: inline-block;
+    width: 48%;
+}
+
+p.rules {
+    text-decoration: none;
+    border-bottom: none;
+}
+
+#dice1 {
+    border-radius: 12px;
+    #margin-top: 100px;
+    transform: rotate(20deg);
+}
+
+#dice2 {
+    border-radius: 12px;
+    #margin-top: 250px;
+    transform: rotate(90deg);
+}
+
+#dice3 {
+    border-radius: 12px;
+    #margin-top: 50px;
+    transform: rotate(50deg);
+}
+
+#dice4 {
+    border-radius: 12px;
+    #margin-top: 200px;
+    transform: rotate(80deg);
+}
+
+#dice5 {
+    border-radius: 12px;
+    #margin-top: 160px;
+    transform: rotate(120deg);
+
+}
+
+#dice6 {
+    border-radius: 12px;
+    #margin-top: 20px;
+    transform: rotate(10deg);
 }

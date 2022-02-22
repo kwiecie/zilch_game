@@ -7,7 +7,7 @@ class Player:
         self.round_scores = []
         self.dices_saved = []
         self.dices_to_reroll = []
-        self.current_round_score = 0
+        self.current_round_score = []
         self.round_counter = 0
         self.winner = False
 
