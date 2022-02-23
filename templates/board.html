@@ -7,13 +7,13 @@
 {% block body %}
     <div class="score">
         <div class="score_table1">
-            <h3>{{ game.players[0].name }}</h3>
-            <p>{{ game.players[0].round_scores }}</p>
+            <h3>Gracz 1: {{ game.players[0].name }}</h3>
+            <p>{{ game.players[0].game_score }}</p>
             <h3>Wynik: {{ game.players[0].score }}</h3>
         </div>
         <div class="score_table2">
-            <h3>{{ game.players[1].name }}</h3>
-            <p>{{ game.players[1].round_scores }}</p>
+            <h3>Gracz 2: {{ game.players[1].name }}</h3>
+            <p>{{ game.players[1].game_score }}</p>
             <h3>Wynik: {{ game.players[1].score }}</h3>
         </div>
     </div>
@@ -180,7 +180,11 @@
                 </form>
 
                 <a href="{{ url_for('reroll') }}"><button id="dice" type="submit">Rzut</button></a>
-                <a href="{{ url_for('bank') }}"><button type="submit" id="bank">Bank</button></a>
+                {% if game.zilch %}
+                    <a href="{{ url_for('bank') }}"><button type="submit" id="bank">Zilch!</button></a>
+                {% else %}
+                    <a href="{{ url_for('bank') }}"><button type="submit" id="bank">Bank: {{ game.players[game.current_player].round_scores }}</button></a>
+                {% endif %}
             </div>
 
         </div>

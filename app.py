@@ -107,7 +107,7 @@ def roll():
 @app.route('/save_dices', methods=['POST', 'GET'])
 def save_dices():
     #game.players[game.current_player].current_round_score = 0
-    score = game.check_score()
+    #score = game.check_score()
 
     #game.players[game.current_player].round_scores.append(score)
     #game.reset_dices()
@@ -140,19 +140,24 @@ def save_dices():
 
     #game.reset_dices()
     print(game.dices)
-    game.check_score()
-    '''if 'Zilch' in score:
-        #print('Zilch!')
-        game.next_player()
-        game.reset_dices()
-        game.set_dices()'''
-    #game.roll(game.dices)
+    print(game.players[game.current_player].round_scores)
+    print(game.current_roll_score)
+    '''game.check_score()
+    if game.zilch:
+        game.current_roll_score = []
+        game.players[game.current_player].round_scores.append('Zilch!')'''
 
     return redirect('/board')
 
 @app.route('/reroll')
 def reroll():
     game.roll(game.dices)
+    game.check_score()
+    game.check_if_zilch()
+    if game.zilch:
+        #game.players[game.current_player].current_round_score = {}
+        game.players[game.current_player].round_scores.clear()
+        #game.players[game.current_player].game_score.append(0)
     return redirect('/board')
 
 @app.route('/bank', methods=['POST', 'GET'])
@@ -160,10 +165,17 @@ def bank():
     #game.players[game.current_player].round_scores += game.players[game.current_player].current_round_score
     print(game.players[game.current_player])
     game.players[game.current_player].round_counter += 1
-    game.players[game.current_player].add_to_bank()
+    #game.add_to_bank()
+    #if game.zilch:
+        #game.players[game.current_player].current_round_score = {}
+        #game.players[game.current_player].game_score.append(0)
+    game.players[game.current_player].game_score.append(sum(game.players[game.current_player].round_scores))
     game.players[game.current_player].sum_the_score()
     #game.check_if_last_round()
+    game.current_roll_score = {}
+    game.players[game.current_player].round_scores = []
     game.next_player()
+    game.zilch = False
     game.reset_dices()
     game.set_dices()
     return redirect('/board')

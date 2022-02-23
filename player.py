@@ -4,6 +4,7 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.score = 0
+        self.game_score = []
         self.round_scores = []
         self.dices_saved = []
         self.dices_to_reroll = []
@@ -63,9 +64,14 @@ class Player:
         self.dices_to_reroll = dice_list
         self.dices_saved = new_dices_saved
 
+    '''def sum_the_score(self):
+        #Sums the score of player
+        self.score = sum(self.round_scores)
+        return self.score'''
+
     def sum_the_score(self):
         '''Sums the score of player'''
-        self.score = sum(self.round_scores)
+        self.score = sum(self.game_score)
         return self.score
 
     def check_if_wins(self):
@@ -73,7 +79,8 @@ class Player:
             self.winner = True
         return self.winner
 
-    def add_to_bank(self):
+    '''def add_to_bank(self):
+        #self.game_score.append(game.current_roll_score)
         #zakończ turę
         #return self.score + self.round_scores[self.round_counter]
-        pass
+        pass'''

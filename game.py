@@ -13,6 +13,7 @@ class Game:
         self.current_round = False
         self.last_round = False
         self.winner = None
+        self.zilch = False
 
     def add_player(self, name):
         self.players.append(Player(name))
@@ -40,10 +41,7 @@ class Game:
 
     def roll(self, dice_list):
         for i in range(len(dice_list)):
-            #random_dice = random.randint(1, 6)
             self.dices[i] = random.randint(1,6)
-            #print(random_dice)
-            #self.players[self.current_player].dices_saved.append(random_dice)
         return self.dices
 
 
@@ -60,6 +58,7 @@ class Game:
 
     def check_score(self):
         '''Dodać wszystkie możliwośći punktacji'''
+
         self.current_roll_score = {}
         one_score = 0
         two_score = 0
@@ -184,27 +183,22 @@ class Game:
         print('ile piątek: %s, wynik za rzut: %s' % (five, five_score))
         print('ile szóstek: %s, wynik za rzut: %s' % (six, six_score))
         print('wynik za strit: %s' % strit_score)
-        if self.current_roll_score:
+        '''if self.current_roll_score:
             print(self.current_roll_score)
             #return self.current_roll_score
         else:
             print('Zilch!')
-            #self.current_roll_score = 0
-            #return self.current_roll_score
-
-
-        #def add_to_round_score(self):
-        #    game.players[game.current_player].sum_the_score()
-        '''if one_score == five_score == 0:
-            score = 0
-        elif one_score >= five_score:
-            score = one_score
-        else:
-            score = five_score'''
-
-        #return score
+            self.zilch = True
+            #self.current_roll_score = []
+            #self.current_player.player.current_round_score = {}
+            #return self.current_roll_score'''
 
         return self.current_roll_score
+
+    def check_if_zilch(self):
+        if self.current_roll_score == {}:
+            self.zilch = True
+        return self.zilch
 
     def remove_from_dices(self):
         pass
@@ -224,6 +218,12 @@ class Game:
         if self.players[self.current_player].winner == True:
             self.winner = self.players[self.current_player].winner
             return self.winner
+
+    '''def add_to_bank(self):
+        self.players[self.current_player].game_score.append(sum(self.players[self.current_player].round_scores))
+        #zakończ turę sum(self.round_scores)
+        #return self.score + self.round_scores[self.round_counter]
+        return self.players[self.current_player].game_score'''
 
     def __repr__(self):
         return  f'''
